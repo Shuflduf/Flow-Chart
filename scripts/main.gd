@@ -15,4 +15,4 @@ func _ready():
 func move_all_nodes_down():
 	for child in get_children():
 		if child is FlowChartNode:
-			child.z_index -= 1
+			child.move_down()
