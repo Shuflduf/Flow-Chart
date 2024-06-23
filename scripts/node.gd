@@ -12,7 +12,8 @@ func _on_input_event(_viewport, event: InputEvent, _shape_idx):
 		var moving := false
 		while !moving and holding_down():
 			await get_tree().process_frame
-			moving = (local_mouse_offset + get_local_mouse_position()).length() > Global.settings.mouse_margin
+			moving = (local_mouse_offset + get_local_mouse_position()).length()\
+				 > Global.settings.mouse_margin
 		pickup()
 			
 	if event.is_action_released("mouse_left"):
