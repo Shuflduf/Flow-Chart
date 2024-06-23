@@ -33,8 +33,8 @@ func move_down():
 	clamp_zindex()
 
 func move_up():
-	z_index += Global.node_count
 	picked_up.emit()
+	z_index = Global.node_count
 	clamp_zindex()
 		
 func clamp_zindex():
