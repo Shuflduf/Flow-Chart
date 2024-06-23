@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ecmwxqsguydy"]
+[gd_scene load_steps=4 format=3 uid="uid://ecmwxqsguydy"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pes5c"]
 [ext_resource type="PackedScene" uid="uid://bt8ik1p2capsh" path="res://scenes/node.tscn" id="1_rjsrk"]
+[ext_resource type="PackedScene" uid="uid://dfvfi1ed2ufrb" path="res://scenes/backround.tscn" id="3_j0eno"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pes5c")
@@ -14,3 +15,7 @@ position = Vector2(524, 302)
 
 [node name="Node3" parent="." instance=ExtResource("1_rjsrk")]
 position = Vector2(751, 175)
+
+[node name="Backround" parent="." instance=ExtResource("3_j0eno")]
+layer = -128
+metadata/_edit_use_anchors_ = true

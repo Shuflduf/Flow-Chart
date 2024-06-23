@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt8ik1p2capsh"]
+[gd_scene load_steps=6 format=3 uid="uid://bt8ik1p2capsh"]
 
 [ext_resource type="Script" path="res://scripts/node.gd" id="1_33khk"]
+[ext_resource type="Shader" path="res://shaders/node.gdshader" id="2_ljogr"]
 [ext_resource type="Texture2D" uid="uid://bhq6k0reoaba5" path="res://icon.svg" id="2_ye5ua"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_af6cj"]
+shader = ExtResource("2_ljogr")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/width = 10.0
+shader_parameter/pattern = 0
+shader_parameter/inside = true
+shader_parameter/add_margins = true
+shader_parameter/aspect_ratio = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2ino"]
 size = Vector2(128, 128)
@@ -10,12 +21,15 @@ size = Vector2(128, 128)
 script = ExtResource("1_33khk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_af6cj")
 texture = ExtResource("2_ye5ua")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_c2ino")
 
 [node name="TextEdit" type="TextEdit" parent="."]
+visible = false
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0

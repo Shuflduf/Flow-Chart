@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfvfi1ed2ufrb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tb2cy"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tb2cy")

@@ -8,9 +8,6 @@ signal picked_up
 var local_mouse_offset: Vector2
 
 func _on_input_event(_viewport, event: InputEvent, _shape_idx):
-	if event.is_action_pressed("ui_cancel"):
-		_on_text_edit_focus_exited()
-	
 	if event.is_action_pressed("mouse_left"):
 		local_mouse_offset = -(event.position - global_position)
 		
@@ -55,4 +52,7 @@ func holding_down():
 func _on_text_edit_focus_exited():
 	print("hg")
 	text.editable = false
-	text.release_focus()
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		_on_text_edit_focus_exited()
