@@ -3,18 +3,27 @@ extends Area2D
 
 signal picked_up
 
+@onready var text = $TextEdit
+
 var local_mouse_offset: Vector2
 
 func _on_input_event(_viewport, event: InputEvent, _shape_idx):
+	if event.is_action_pressed("ui_cancel"):
+		_on_text_edit_focus_exited()
+	
 	if event.is_action_pressed("mouse_left"):
 		local_mouse_offset = -(event.position - global_position)
-		#var dist_total := local_mouse_offset
+		
 		var moving := false
 		while !moving and holding_down():
 			await get_tree().process_frame
 			moving = (local_mouse_offset + get_local_mouse_position()).length()\
 				 > Global.settings.mouse_margin
-		pickup()
+		
+		if moving:
+			pickup()
+		else:
+			text.editable = true
 			
 	if event.is_action_released("mouse_left"):
 		drop()
@@ -42,3 +51,8 @@ func clamp_zindex():
 
 func holding_down():
 	return Input.is_action_pressed("mouse_left")
+
+func _on_text_edit_focus_exited():
+	print("hg")
+	text.editable = false
+	text.release_focus()
