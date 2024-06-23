@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Settings" load_steps=2 format=3 uid="uid://dyhxvbrrxt2yi"]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_sd5p4"]
+
+[resource]
+script = ExtResource("1_sd5p4")
+grid = true
+mouse_margin = 10.0
+grid_resolution = 32

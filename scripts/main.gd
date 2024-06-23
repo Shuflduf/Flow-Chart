@@ -1,8 +1,15 @@
 extends Node2D
 
+var actual_pos : Vector2
+var grid_pos : Vector2i
+
 func _process(_delta):
 	if Global.active_node != null:
-		Global.active_node.global_position = get_local_mouse_position() + Global.active_node.local_mouse_offset
+		actual_pos = get_local_mouse_position() + Global.active_node.local_mouse_offset
+		if !Global.settings.grid:
+			Global.active_node.global_position = actual_pos
+		else:
+			move_grid()
 
 func _ready():
 	for child in get_children():
@@ -11,7 +18,6 @@ func _ready():
 			child.picked_up.connect(move_all_nodes_down)
 			Global.node_count += 1
 			Global.nodes_indicies.push_front(child.z_index)
-	#print(Global.nodes_indicies)
 
 func move_all_nodes_down():
 	Global.nodes_indicies.clear()
@@ -19,3 +25,8 @@ func move_all_nodes_down():
 		if child is FlowChartNode:
 			Global.nodes_indicies.push_front(child.z_index)
 			child.move_down()
+
+func move_grid():
+	grid_pos = actual_pos / Global.settings.grid_resolution
+	Global.active_node.global_position = grid_pos * Global.settings.grid_resolution
+		

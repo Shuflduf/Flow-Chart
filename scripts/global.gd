@@ -5,6 +5,8 @@ var node_count := 0
 var whos_on_top: Array[FlowChartNode]
 var nodes_indicies: Array[int]
 
+@export var settings: Settings = preload("res://resources/default_settings.tres")
+
 func verify_on_top():
 	await get_tree().process_frame
 	var highest := -INF
