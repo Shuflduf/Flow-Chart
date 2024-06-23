@@ -1,16 +1,30 @@
 class_name FlowChartNode
 extends Area2D
 
-func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("mouse_left"):
-		print(Global.mouse_offset)
-		Global.mouse_offset = -(event.position - global_position)
-		
-		if Global.active_node == self:
-			Global.active_node = null
-		
-		elif Global.active_node == null:
-			Global.active_node = self
-		
-		
+signal picked_up
 
+func _on_input_event(_viewport, event: InputEvent, _shape_idx):
+	if event.is_action_pressed("mouse_left"):
+		
+		Global.mouse_offset = -(event.position - global_position)
+		pickup()
+			
+	if event.is_action_released("mouse_left"):
+		drop()
+		
+func pickup():
+	Global.whos_on_top.push_front(self)
+	#if Global.active_node == null:
+		#await get_tree().physics_frame
+		#Global.active_node = self
+		#print(z_index)
+		#if z_index != Global.node_count:
+			#picked_up.emit()
+			#z_index = Global.node_count
+
+func drop():
+	if Global.active_node == self:
+		Global.active_node = null
+
+func move_down():
+	z_index -= 1
