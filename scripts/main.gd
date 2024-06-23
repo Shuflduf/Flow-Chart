@@ -11,7 +11,7 @@ func _ready():
 			child.picked_up.connect(move_all_nodes_down)
 			Global.node_count += 1
 			Global.nodes_indicies.push_front(child.z_index)
-	print(Global.nodes_indicies)
+	#print(Global.nodes_indicies)
 
 func move_all_nodes_down():
 	Global.nodes_indicies.clear()
