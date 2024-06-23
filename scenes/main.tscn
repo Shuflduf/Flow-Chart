@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ecmwxqsguydy"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_pes5c"]
+[ext_resource type="PackedScene" uid="uid://bt8ik1p2capsh" path="res://scenes/node.tscn" id="1_rjsrk"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_pes5c")
+
+[node name="Node" parent="." instance=ExtResource("1_rjsrk")]
+position = Vector2(219, 157)
+
+[node name="Node2" parent="." instance=ExtResource("1_rjsrk")]
+position = Vector2(524, 302)
+
+[node name="Node3" parent="." instance=ExtResource("1_rjsrk")]
+position = Vector2(751, 175)
