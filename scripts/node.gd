@@ -13,6 +13,7 @@ func _ready():
 
 func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
+		print("NODE")
 		local_mouse_offset = -event.position
 		print(local_mouse_offset)
 		
@@ -67,7 +68,3 @@ func update_handles_position():
 	handles.get_children()[2].position = Vector2(size.x, size.y / 2)
 	handles.get_children()[3].position = Vector2(size.x / 2, 0)
 		
-
-
-func _on_mouse_entered():
-	pass # Replace with function body.

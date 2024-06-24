@@ -8,3 +8,4 @@ func _on_gui_input(event):
 		for child in get_children():
 			if child is FlowChartNode:
 				child._on_text_edit_focus_exited()
+

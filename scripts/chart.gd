@@ -30,3 +30,10 @@ func move_grid():
 	grid_pos = actual_pos / Global.settings.grid_resolution
 	Global.active_node.global_position = grid_pos * Global.settings.grid_resolution
 		
+func _on_gui_input(event):
+	if event.is_action_pressed("mouse_left"):
+		print("GHDKJDGHJKGHJKHG")
+
+
+func _on_mouse_entered():
+	pass # Replace with function body.

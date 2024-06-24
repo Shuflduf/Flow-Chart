@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://ecmwxqsguydy"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_pes5c"]
+[ext_resource type="Script" path="res://scripts/chart.gd" id="1_60yhd"]
 [ext_resource type="PackedScene" uid="uid://bt8ik1p2capsh" path="res://scenes/node.tscn" id="1_rjsrk"]
 
-[node name="Panel" type="Control"]
+[node name="Chart" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_pes5c")
+script = ExtResource("1_60yhd")
 
 [node name="Node" parent="." instance=ExtResource("1_rjsrk")]
 layout_mode = 1

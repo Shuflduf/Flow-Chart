@@ -8,6 +8,28 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="Node2D" type="Node2D"]
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -212.0
+offset_right = 1536.0
+offset_bottom = 868.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Chart" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_v8b4m")]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
@@ -29,23 +51,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tk7o7")
 script = ExtResource("2_cvur7")
 chart = NodePath("../../../SubViewportContainer/SubViewport/Chart")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 656.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-physics_object_picking = true
-physics_object_picking_sort = true
-size = Vector2i(1920, 1080)
-size_2d_override_stretch = true
-
-[node name="Chart" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_v8b4m")]
-
+[connection signal="gui_input" from="SubViewportContainer" to="SubViewportContainer/SubViewport/Chart" method="_on_sub_viewport_container_gui_input"]
 [connection signal="gui_input" from="Camera2D/CanvasLayer/BG" to="Camera2D/CanvasLayer/BG" method="_on_gui_input"]
