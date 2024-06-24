@@ -3,7 +3,7 @@ extends Area2D
 
 signal picked_up
 
-@onready var text = $TextEdit
+@onready var text = %TextEdit
 
 var local_mouse_offset: Vector2
 
@@ -21,6 +21,7 @@ func _on_input_event(_viewport, event: InputEvent, _shape_idx):
 			pickup()
 		else:
 			text.editable = true
+			print("EDIT")
 			
 	if event.is_action_released("mouse_left"):
 		drop()
@@ -56,3 +57,8 @@ func _on_text_edit_focus_exited():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		_on_text_edit_focus_exited()
+
+
+func _on_text_edit_gui_input(event):
+	if event is InputEventMouseButton:
+		print("Gjkfg")
