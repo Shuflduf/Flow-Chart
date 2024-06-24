@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt8ik1p2capsh"]
+[gd_scene load_steps=9 format=3 uid="uid://bt8ik1p2capsh"]
 
 [ext_resource type="Script" path="res://scripts/node.gd" id="1_33khk"]
 [ext_resource type="FontFile" uid="uid://b84rrip7gr1t1" path="res://assets/fonts/OPENSANS-MEDIUM.TTF" id="2_l54e1"]
+[ext_resource type="Texture2D" uid="uid://bhq6k0reoaba5" path="res://icon.svg" id="2_ye5ua"]
 [ext_resource type="StyleBox" uid="uid://dyrgf00qmr58x" path="res://resources/textedit.tres" id="3_3as4h"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_6gs7g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7f50"]
 bg_color = Color(0, 0, 0, 1)
@@ -20,6 +22,11 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjtmt"]
+shader = ExtResource("4_6gs7g")
+shader_parameter/circle_radius = 0.5
+shader_parameter/circle_color = Color(1, 0, 0, 1)
 
 [node name="Node" type="PanelContainer"]
 anchors_preset = -1
@@ -70,6 +77,12 @@ editable = false
 wrap_mode = 1
 scroll_smooth = true
 caret_blink = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pjtmt")
+position = Vector2(0, 63)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ye5ua")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="focus_exited" from="MarginContainer/PanelContainer/MarginContainer/TextEdit" to="." method="_on_text_edit_focus_exited"]
