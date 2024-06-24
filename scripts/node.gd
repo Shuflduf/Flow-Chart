@@ -9,7 +9,6 @@ var local_mouse_offset: Vector2
 
 func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
-		
 		local_mouse_offset = -event.position
 		print(local_mouse_offset)
 		
@@ -23,7 +22,6 @@ func _on_gui_input(event):
 			pickup()
 		else:
 			text.editable = true
-			print("EDIT")
 			
 	if event.is_action_released("mouse_left"):
 		drop()
@@ -53,17 +51,8 @@ func holding_down():
 	return Input.is_action_pressed("mouse_left")
 
 func _on_text_edit_focus_exited():
-	print("hg")
 	text.editable = false
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		_on_text_edit_focus_exited()
-
-
-func _on_text_edit_gui_input(event):
-	if event is InputEventMouseButton:
-		print("Gjkfg")
-
-
-
