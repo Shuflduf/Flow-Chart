@@ -67,3 +67,7 @@ func update_handles_position():
 	handles.get_children()[2].position = Vector2(size.x, size.y / 2)
 	handles.get_children()[3].position = Vector2(size.x / 2, 0)
 		
+
+
+func _on_mouse_entered():
+	pass # Replace with function body.

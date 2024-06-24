@@ -12,12 +12,10 @@ func _process(_delta):
 			move_grid()
 
 func _ready():
-	get_tree().root.get_viewport().size_changed.connect(func(): _viewport_size_changed())
-	
 	for child in get_children():
 		if child is FlowChartNode:
 			child.z_index = Global.node_count
-			child.picked_up.connect(move_all_nodes_down)
+			child.picked_up.connect(func(): move_all_nodes_down())
 			Global.node_count += 1
 			Global.nodes_indicies.push_front(child.z_index)
 
@@ -32,14 +30,3 @@ func move_grid():
 	grid_pos = actual_pos / Global.settings.grid_resolution
 	Global.active_node.global_position = grid_pos * Global.settings.grid_resolution
 		
-func _on_gui_input(event):
-	if event.is_action_pressed("mouse_left"):
-		print("backround")
-		for child in get_children():
-			if child is FlowChartNode:
-				child._on_text_edit_focus_exited()
-
-func _viewport_size_changed():
-	for child in get_children():
-		if child is FlowChartNode:
-			child.update_handles_position()
