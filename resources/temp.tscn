@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://capk7rweurlfj"]
+
+[ext_resource type="PackedScene" uid="uid://ecmwxqsguydy" path="res://scenes/main.tscn" id="1_fm5jc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wj12d"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+
+[node name="Panel" parent="SubViewport" instance=ExtResource("1_fm5jc")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_wj12d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-372, -210)
