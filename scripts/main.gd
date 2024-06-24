@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var actual_pos : Vector2
 var grid_pos : Vector2i

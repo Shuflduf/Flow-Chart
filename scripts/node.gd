@@ -1,5 +1,5 @@
 class_name FlowChartNode
-extends Area2D
+extends Control
 
 signal picked_up
 
@@ -7,9 +7,11 @@ signal picked_up
 
 var local_mouse_offset: Vector2
 
-func _on_input_event(_viewport, event: InputEvent, _shape_idx):
+func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
-		local_mouse_offset = -(event.position - global_position)
+		
+		local_mouse_offset = -event.position
+		print(local_mouse_offset)
 		
 		var moving := false
 		while !moving and holding_down():
@@ -62,3 +64,6 @@ func _input(event):
 func _on_text_edit_gui_input(event):
 	if event is InputEventMouseButton:
 		print("Gjkfg")
+
+
+
