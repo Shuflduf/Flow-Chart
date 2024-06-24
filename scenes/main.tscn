@@ -1,40 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://ecmwxqsguydy"]
+[gd_scene load_steps=4 format=3 uid="uid://capk7rweurlfj"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_pes5c"]
-[ext_resource type="PackedScene" uid="uid://bt8ik1p2capsh" path="res://scenes/node.tscn" id="1_rjsrk"]
+[ext_resource type="PackedScene" uid="uid://ecmwxqsguydy" path="res://scenes/chart.tscn" id="1_v8b4m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7x4y"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wj12d"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk7o7"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="Panel" type="Panel"]
+[node name="Node2D" type="Node2D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+
+[node name="Panel" parent="SubViewport" instance=ExtResource("1_v8b4m")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+texture = SubResource("ViewportTexture_wj12d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-317, -153)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = -128
+
+[node name="Panel" type="Panel" parent="Camera2D/CanvasLayer"]
 z_index = -4096
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 3.333
+anchor_bottom = 3.333
+offset_right = 0.383789
+offset_bottom = 0.21582
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_l7x4y")
-script = ExtResource("1_pes5c")
-
-[node name="Node" parent="." instance=ExtResource("1_rjsrk")]
-layout_mode = 1
-offset_left = 283.512
-offset_top = 221.152
-offset_right = 284.488
-offset_bottom = 221.848
-
-[node name="Node2" parent="." instance=ExtResource("1_rjsrk")]
-layout_mode = 1
-offset_left = 588.512
-offset_top = 366.152
-offset_right = 589.488
-offset_bottom = 366.848
-
-[node name="Node3" parent="." instance=ExtResource("1_rjsrk")]
-layout_mode = 1
-offset_left = 815.512
-offset_top = 239.152
-offset_right = 816.488
-offset_bottom = 239.848
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tk7o7")
