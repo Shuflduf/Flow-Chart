@@ -4,8 +4,12 @@ extends Control
 signal picked_up
 
 @onready var text = %TextEdit
+@onready var handles = $Handles
 
 var local_mouse_offset: Vector2
+
+func _ready():
+	update_handles_position()
 
 func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
@@ -56,3 +60,10 @@ func _on_text_edit_focus_exited():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		_on_text_edit_focus_exited()
+
+func update_handles_position():
+	handles.get_children()[0].position = Vector2(0, size.y / 2)
+	handles.get_children()[1].position = Vector2(size.x / 2, size.y)
+	handles.get_children()[2].position = Vector2(size.x, size.y / 2)
+	handles.get_children()[3].position = Vector2(size.x / 2, 0)
+		

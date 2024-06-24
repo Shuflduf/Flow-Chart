@@ -12,6 +12,8 @@ func _process(_delta):
 			move_grid()
 
 func _ready():
+	get_tree().root.get_viewport().size_changed.connect(func(): _viewport_size_changed())
+	
 	for child in get_children():
 		if child is FlowChartNode:
 			child.z_index = Global.node_count
@@ -35,3 +37,8 @@ func _on_gui_input(event):
 		for child in get_children():
 			if child is FlowChartNode:
 				child._on_text_edit_focus_exited()
+
+func _viewport_size_changed():
+	for child in get_children():
+		if child is FlowChartNode:
+			child.update_handles_position()

@@ -78,9 +78,30 @@ wrap_mode = 1
 scroll_smooth = true
 caret_blink = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Handles" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Handles"]
 material = SubResource("ShaderMaterial_pjtmt")
-position = Vector2(0, 63)
+position = Vector2(0, 64)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ye5ua")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Handles"]
+material = SubResource("ShaderMaterial_pjtmt")
+position = Vector2(64, 128)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ye5ua")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Handles"]
+material = SubResource("ShaderMaterial_pjtmt")
+position = Vector2(128, 64)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ye5ua")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Handles"]
+material = SubResource("ShaderMaterial_pjtmt")
+position = Vector2(64, 0)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_ye5ua")
 
