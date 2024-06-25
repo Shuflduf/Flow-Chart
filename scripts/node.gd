@@ -30,7 +30,7 @@ func _on_gui_input(event: InputEventMouse):
 		while !moving and holding_down():
 			await get_tree().process_frame
 			temp = (local_mouse_offset - \
-				(text_box.global_position - get_local_mouse_position())).length()
+				(text_box.global_position - get_global_mouse_position())).length()
 			moving = temp > Global.settings.mouse_margin
 		
 		print(local_mouse_offset)
