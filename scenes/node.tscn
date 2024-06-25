@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/node.gd" id="1_33khk"]
 [ext_resource type="FontFile" uid="uid://b84rrip7gr1t1" path="res://assets/fonts/OPENSANS-MEDIUM.TTF" id="2_l54e1"]
 [ext_resource type="StyleBox" uid="uid://dyrgf00qmr58x" path="res://resources/textedit.tres" id="3_3as4h"]
-[ext_resource type="StyleBox" uid="uid://ba2126hcropnr" path="res://resources/handle.tres" id="4_rg46n"]
+[ext_resource type="PackedScene" uid="uid://22388onf67bk" path="res://scenes/handle.tscn" id="4_gqlv8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7f50"]
 bg_color = Color(0, 0, 0, 1)
@@ -73,39 +73,31 @@ caret_blink = true
 
 [node name="Handles" type="Control" parent="."]
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
 
-[node name="Panel" type="Panel" parent="Handles"]
+[node name="Handle" parent="Handles" instance=ExtResource("4_gqlv8")]
 layout_mode = 0
-offset_left = -8.0
-offset_top = 56.0
-offset_right = 8.0
-offset_bottom = 72.0
-theme_override_styles/panel = ExtResource("4_rg46n")
 
-[node name="Panel2" type="Panel" parent="Handles"]
+[node name="Handle2" parent="Handles" instance=ExtResource("4_gqlv8")]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 120.0
 offset_right = 72.0
 offset_bottom = 136.0
-theme_override_styles/panel = ExtResource("4_rg46n")
 
-[node name="Panel3" type="Panel" parent="Handles"]
+[node name="Handle3" parent="Handles" instance=ExtResource("4_gqlv8")]
 layout_mode = 0
 offset_left = 120.0
-offset_top = 56.0
+offset_top = 57.0
 offset_right = 136.0
-offset_bottom = 72.0
-theme_override_styles/panel = ExtResource("4_rg46n")
+offset_bottom = 73.0
 
-[node name="Panel4" type="Panel" parent="Handles"]
+[node name="Handle4" parent="Handles" instance=ExtResource("4_gqlv8")]
 layout_mode = 0
 offset_left = 56.0
 offset_top = -8.00001
 offset_right = 72.0
 offset_bottom = 7.99999
-theme_override_styles/panel = ExtResource("4_rg46n")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

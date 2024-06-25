@@ -3,6 +3,7 @@ extends Control
 
 signal picked_up
 
+
 @onready var text = %TextEdit
 @onready var handles = $Handles
 
@@ -10,7 +11,10 @@ var local_mouse_offset: Vector2
 
 func _ready():
 	update_handles_position()
-
+	for handle in handles.get_children():
+		if handle is Handle:
+			handle.handle_grabbed.connect(func(): print("dkjfgdfjkg"))
+			
 func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
 		local_mouse_offset = -event.position
@@ -41,7 +45,6 @@ func drop():
 func move_down():
 	z_index -= 1
 	clamp_zindex()
-	#print(Global.nodes_indicies)
 
 func move_up():
 	picked_up.emit()
