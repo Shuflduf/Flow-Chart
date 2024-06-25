@@ -9,6 +9,4 @@ offset_bottom = 16.0
 theme_override_styles/panel = ExtResource("1_5fc7q")
 script = ExtResource("2_cms6t")
 
-[node name="Line2D" type="Line2D" parent="."]
-
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

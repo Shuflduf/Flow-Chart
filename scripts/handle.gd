@@ -25,7 +25,11 @@ func _on_gui_input(event):
 			new_pointer.points = new_pointer.create(-start_pos, get_local_mouse_position())
 			new_pointer.default_color = Color.BLACK
 			new_pointer.z_index = -4000
-			call_deferred("add_child", new_pointer)
+			add_child(new_pointer)
+			#call_deferred("add_child", new_pointer)
+			while holding_down():
+				await get_tree().process_frame
+				get_children()[-1].end_pos = get_local_mouse_position()
 			
 func holding_down():
 	return Input.is_action_pressed("mouse_left")
