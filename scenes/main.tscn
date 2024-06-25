@@ -1,11 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://capk7rweurlfj"]
+[gd_scene load_steps=2 format=3 uid="uid://capk7rweurlfj"]
 
 [ext_resource type="PackedScene" uid="uid://ecmwxqsguydy" path="res://scenes/chart.tscn" id="1_v8b4m"]
-[ext_resource type="Script" path="res://scripts/SubViewportFix.gd" id="2_1bcok"]
-[ext_resource type="Script" path="res://scripts/backround.gd" id="2_cvur7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk7o7"]
-bg_color = Color(1, 1, 1, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -27,32 +22,10 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
+handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(1920, 1080)
 size_2d_override_stretch = true
 render_target_update_mode = 4
-script = ExtResource("2_1bcok")
 
 [node name="Chart" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_v8b4m")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -128
-visible = false
-
-[node name="BG" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("chart")]
-z_index = -4096
-anchors_preset = -1
-anchor_right = 3.333
-anchor_bottom = 3.333
-offset_left = -1220.0
-offset_top = -721.0
-offset_right = -1219.62
-offset_bottom = -720.784
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tk7o7")
-script = ExtResource("2_cvur7")
-chart = NodePath("../../SubViewportContainer/SubViewport/Chart")
-
-[connection signal="gui_input" from="SubViewportContainer" to="SubViewportContainer/SubViewport/Chart" method="_on_sub_viewport_container_gui_input"]
-[connection signal="gui_input" from="CanvasLayer/BG" to="CanvasLayer/BG" method="_on_gui_input"]

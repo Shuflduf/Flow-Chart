@@ -21,7 +21,6 @@ offset_right = 284.488
 offset_bottom = 221.848
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="Node2" parent="." instance=ExtResource("1_rjsrk")]
 layout_mode = 1
