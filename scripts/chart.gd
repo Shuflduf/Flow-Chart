@@ -32,8 +32,8 @@ func move_grid():
 		
 func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
-		print("GHDKJDGHJKGHJKHG")
+		print("clicked on CHART")
 
-
-func _on_mouse_entered():
-	pass # Replace with function body.
+func _on_sub_viewport_container_gui_input(event):
+	if event.is_action_pressed("mouse_left"):
+		print("clicked on subviewportcontainer")
