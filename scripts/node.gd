@@ -63,9 +63,8 @@ func _input(event):
 
 func update_handles_position():
 	var handles_children = handles.get_children()
-	handles_children[0].position = Vector2(0, size.y / 2) + Vector2(handles_children[0].size.x / 2, -handles_children[0].size.x / 2)
-	print(handles_children[0].position)
-	handles_children[1].position = Vector2(size.x / 2, size.y)
-	handles_children[2].position = Vector2(size.x, size.y / 2)
-	handles_children[3].position = Vector2(size.x / 2, 0)
+	handles_children[0].position = Vector2(0, size.y / 2) - handles_children[0].size / 2
+	handles_children[1].position = Vector2(size.x / 2, size.y) - handles_children[1].size / 2
+	handles_children[2].position = Vector2(size.x, size.y / 2) - handles_children[2].size / 2
+	handles_children[3].position = Vector2(size.x / 2, 0) - handles_children[3].size / 2
 		
