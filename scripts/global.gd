@@ -4,7 +4,7 @@ var active_node: FlowChartNode
 var node_count := 0
 var whos_on_top: Array[FlowChartNode]
 var nodes_indicies: Array[int]
-var active_handle: Handle
+var active_pointer: Pointer
 
 @export var settings: Settings = preload("res://resources/default_settings.tres")
 
