@@ -7,5 +7,5 @@ var end_pos: Handle
 func create(one, two):
 	return PackedVector2Array([one, two])
 
-func move_end(pos):
-	points[1] = pos
+func move_point(index, pos):
+	points[index] = pos
