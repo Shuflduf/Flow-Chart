@@ -29,11 +29,4 @@ func move_all_nodes_down():
 func move_grid():
 	grid_pos = actual_pos / Global.settings.grid_resolution
 	Global.active_node.global_position = grid_pos * Global.settings.grid_resolution
-		
-func _on_gui_input(event):
-	if event.is_action_pressed("mouse_left"):
-		print("clicked on CHART")
-
-func _on_sub_viewport_container_gui_input(event):
-	if event.is_action_pressed("mouse_left"):
-		print("clicked on subviewportcontainer")
+	

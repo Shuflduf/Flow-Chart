@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt8ik1p2capsh"]
+[gd_scene load_steps=7 format=3 uid="uid://bt8ik1p2capsh"]
 
 [ext_resource type="Script" path="res://scripts/node.gd" id="1_33khk"]
 [ext_resource type="FontFile" uid="uid://b84rrip7gr1t1" path="res://assets/fonts/OPENSANS-MEDIUM.TTF" id="2_l54e1"]
-[ext_resource type="Texture2D" uid="uid://bhq6k0reoaba5" path="res://icon.svg" id="2_ye5ua"]
 [ext_resource type="StyleBox" uid="uid://dyrgf00qmr58x" path="res://resources/textedit.tres" id="3_3as4h"]
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_6gs7g"]
+[ext_resource type="StyleBox" uid="uid://ba2126hcropnr" path="res://resources/handle.tres" id="4_rg46n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7f50"]
 bg_color = Color(0, 0, 0, 1)
@@ -22,11 +21,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 16
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjtmt"]
-shader = ExtResource("4_6gs7g")
-shader_parameter/circle_radius = 0.5
-shader_parameter/circle_color = Color(1, 0, 0, 1)
 
 [node name="Node" type="PanelContainer"]
 anchors_preset = -1
@@ -81,29 +75,59 @@ caret_blink = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Handles"]
-material = SubResource("ShaderMaterial_pjtmt")
-position = Vector2(0, 64)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ye5ua")
+[node name="Panel" type="Panel" parent="Handles"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -7.99993
+offset_right = 8.0
+offset_bottom = 8.00007
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_rg46n")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Handles"]
-material = SubResource("ShaderMaterial_pjtmt")
-position = Vector2(64, 128)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ye5ua")
+[node name="Panel2" type="Panel" parent="Handles"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -7.99986
+offset_right = 8.0
+offset_bottom = 8.00015
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_rg46n")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Handles"]
-material = SubResource("ShaderMaterial_pjtmt")
-position = Vector2(128, 64)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ye5ua")
+[node name="Panel3" type="Panel" parent="Handles"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -7.99993
+offset_right = 136.0
+offset_bottom = 8.00007
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_rg46n")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Handles"]
-material = SubResource("ShaderMaterial_pjtmt")
-position = Vector2(64, 0)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ye5ua")
+[node name="Panel4" type="Panel" parent="Handles"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = -8.00001
+offset_right = 8.0
+offset_bottom = 7.99999
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("4_rg46n")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
