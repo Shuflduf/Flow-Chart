@@ -12,9 +12,6 @@ var local_mouse_offset: Vector2
 
 func _ready():
 	update_handles_position()
-	for handle in handles.get_children():
-		if handle is Handle:
-			handle.handle_grabbed.connect(func(): print("dkjfgdfjkg"))
 			
 func _on_text_edit_gui_input(event):
 
@@ -32,7 +29,6 @@ func _on_gui_input(event: InputEventMouse):
 				(text_box.global_position - get_global_mouse_position())).length()
 			moving = temp > Global.settings.mouse_margin
 		
-		print(temp)
 		if moving:
 			pickup()
 		else:
