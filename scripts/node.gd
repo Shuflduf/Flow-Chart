@@ -17,14 +17,13 @@ func _ready():
 			handle.handle_grabbed.connect(func(): print("dkjfgdfjkg"))
 			
 func _on_text_edit_gui_input(event):
-	#print(text_box.position - event.position)
+
 	if event is InputEventMouse:
 		_on_gui_input(event)
 	
 func _on_gui_input(event: InputEventMouse):
 	if event.is_action_pressed("mouse_left"):
-		local_mouse_offset = global_position - event.global_position
-		#print(local_mouse_offset.length())
+		local_mouse_offset = text_box.global_position - event.global_position
 		var moving := false
 		var temp : float
 		while !moving and holding_down():
@@ -33,7 +32,7 @@ func _on_gui_input(event: InputEventMouse):
 				(text_box.global_position - get_global_mouse_position())).length()
 			moving = temp > Global.settings.mouse_margin
 		
-		print(local_mouse_offset)
+		print(temp)
 		if moving:
 			pickup()
 		else:
