@@ -51,17 +51,16 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gj3vu")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="TextBox" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 0
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/PanelContainer/TextBox"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
-mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_readonly_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.109804, 0.109804, 0.109804, 0.580392)
@@ -112,4 +111,5 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="Pointers"]
 texture = ExtResource("2_ye5ua")
 
-[connection signal="gui_input" from="MarginContainer/PanelContainer/MarginContainer" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="MarginContainer/PanelContainer/TextBox" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="MarginContainer/PanelContainer/TextBox/TextEdit" to="." method="_on_text_edit_gui_input"]
