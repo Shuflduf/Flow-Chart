@@ -18,7 +18,6 @@ func _ready():
 func _on_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
 		local_mouse_offset = -event.position
-		print(local_mouse_offset)
 		
 		var moving := false
 		while !moving and holding_down():
@@ -35,12 +34,14 @@ func _on_gui_input(event):
 		drop()
 		
 func pickup():
-	if Global.active_node == null:
-		Global.whos_on_top.push_front(self)
-		Global.verify_on_top()
+	_on_text_edit_focus_exited()
+	Global.whos_on_top.push_front(self)
+	Global.verify_on_top()
+		
 
 func drop():
 	Global.active_node = null
+	#text.editable = true
 
 func move_down():
 	z_index -= 1
@@ -71,3 +72,4 @@ func update_handles_position():
 	handles_children[2].position = Vector2(size.x, size.y / 2) - handles_children[2].size / 2
 	handles_children[3].position = Vector2(size.x / 2, 0) - handles_children[3].size / 2
 		
+

@@ -13,8 +13,9 @@ func _on_gui_input(event):
 			moving = (event.position - get_local_mouse_position()).length()\
 				 > Global.settings.handles_mouse_margin
 		
-		if moving and Global.active_handle == null:
+		if moving: #and Global.active_handle == null
 			Global.active_handle = self
+			print(name)
 			
 func holding_down():
 	return Input.is_action_pressed("mouse_left")
