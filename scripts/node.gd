@@ -65,7 +65,6 @@ func holding_down() -> bool:
 func disable_text_field() -> void:
 	text.editable = false
 	
-
 func enable_text_field() -> void:
 	text.editable = true
 
@@ -80,7 +79,10 @@ func update_handles_position() -> void:
 	handles_children[2].position = Vector2(size.x, size.y / 2) - handles_children[2].size / 2
 	handles_children[3].position = Vector2(size.x / 2, 0) - handles_children[3].size / 2
 		
-
+func _moved() -> void:
+	for handle in handles.get_children():
+		if handle is Handle:
+			handle._node_moved()
 
 
 
