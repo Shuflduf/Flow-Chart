@@ -8,7 +8,7 @@ var active_pointer: Pointer
 
 @export var settings: Settings = preload("res://resources/default_settings.tres")
 
-func verify_on_top():
+func verify_on_top() -> void:
 	await get_tree().process_frame
 	var highest := -INF
 	for i in whos_on_top:
