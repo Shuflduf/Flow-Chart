@@ -120,7 +120,7 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		offset -= outline.size / 2
 		offset /= outline.size
 		offset *= 2
-		print(offset)
+		print(get_local_mouse_position())
 		
 		if abs(offset.x) > abs(offset.y):
 			outline.mouse_default_cursor_shape = CURSOR_HSIZE
@@ -132,8 +132,14 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 				current_edge = edges.T if offset.y < 0 else edges.B
 			
 		if resizing:
-			size = get_local_mouse_position()
-		update_handles_position()
+			match current_edge:
+				edges.T:
+					size.y -= get_local_mouse_position().y
+					position.y += get_local_mouse_position().y
+				edges.B:
+					size.y -= (get_local_mouse_position().y - size.y)
+					
+			update_handles_position()
 			 	
 		
 	if event.is_action_pressed("mouse_left"):
