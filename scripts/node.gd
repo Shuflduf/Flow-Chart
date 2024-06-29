@@ -12,6 +12,7 @@ var hovering := false
 
 var local_mouse_offset: Vector2
 
+
 func _ready() -> void:
 	update_handles_position()
 		
@@ -112,4 +113,9 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		
 		offset -= outline.size / 2
 		offset = offset.normalized()
-		print(offset)
+		if abs(offset.x) > Global.settings.drag_margins:
+			outline.mouse_default_cursor_shape = CURSOR_HSIZE
+		elif abs(offset.y) > Global.settings.drag_margins:
+			outline.mouse_default_cursor_shape = CURSOR_VSIZE
+		else:
+			print(offset.x + abs(offset.y))

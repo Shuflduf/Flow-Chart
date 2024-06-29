@@ -8,3 +8,4 @@ grid = true
 mouse_margin = 10.0
 handles_mouse_margin = 5.0
 grid_resolution = 32
+drag_margins = 0.85
