@@ -5,8 +5,9 @@ var grid_pos : Vector2i
 
 func _process(_delta: float) -> void:
 	if Global.active_node != null:
-		actual_pos = get_local_mouse_position() + Global.active_node.local_mouse_offset
 		Global.active_node._moved()
+		actual_pos = get_local_mouse_position() + Global.active_node.local_mouse_offset
+		
 		if !Global.settings.grid:
 			Global.active_node.global_position = actual_pos
 		else:
