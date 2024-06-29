@@ -11,7 +11,15 @@ var hovering := false
 @onready var outline := %Outline
 
 var local_mouse_offset: Vector2
+var resizing := false
 
+enum edges {
+	TL, TM, TR,
+	ML,     MR,
+	BL, BM, BR
+}
+
+var current_edge: edges
 
 func _ready() -> void:
 	update_handles_position()
@@ -115,9 +123,25 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		offset = offset.normalized()
 		if abs(offset.x) > Global.settings.drag_margins:
 			outline.mouse_default_cursor_shape = CURSOR_HSIZE
+			current_edge = edges.ML if offset.x < 0 else edges.MR
 		elif abs(offset.y) > Global.settings.drag_margins:
 			outline.mouse_default_cursor_shape = CURSOR_VSIZE
+			current_edge = edges.TM if offset.y < 0 else edges.BM
 		elif round(abs(offset.x - offset.y)) == 1:
 			outline.mouse_default_cursor_shape = CURSOR_BDIAGSIZE
+			current_edge = edges.BL if offset.y > 0 else edges.TR
 		else:
 			outline.mouse_default_cursor_shape = CURSOR_FDIAGSIZE
+			current_edge = edges.BR if offset.y > 0 else edges.TL
+			
+		if resizing and current_edge == edges.BR:
+			print("bottom righ")
+			 	
+		
+	if event.is_action_pressed("mouse_left"):
+		resizing = true
+	
+	if event.is_action_released("mouse_left"):
+		resizing = false
+		
+		
