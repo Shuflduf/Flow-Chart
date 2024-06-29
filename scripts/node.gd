@@ -123,19 +123,24 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		offset = offset.normalized()
 		if abs(offset.x) > Global.settings.drag_margins:
 			outline.mouse_default_cursor_shape = CURSOR_HSIZE
-			current_edge = edges.ML if offset.x < 0 else edges.MR
+			if !resizing:
+				current_edge = edges.ML if offset.x < 0 else edges.MR
 		elif abs(offset.y) > Global.settings.drag_margins:
 			outline.mouse_default_cursor_shape = CURSOR_VSIZE
-			current_edge = edges.TM if offset.y < 0 else edges.BM
+			if !resizing:
+				current_edge = edges.TM if offset.y < 0 else edges.BM
 		elif round(abs(offset.x - offset.y)) == 1:
 			outline.mouse_default_cursor_shape = CURSOR_BDIAGSIZE
-			current_edge = edges.BL if offset.y > 0 else edges.TR
+			if !resizing:
+				current_edge = edges.BL if offset.y > 0 else edges.TR
 		else:
 			outline.mouse_default_cursor_shape = CURSOR_FDIAGSIZE
-			current_edge = edges.BR if offset.y > 0 else edges.TL
+			if !resizing:
+				current_edge = edges.BR if offset.y > 0 else edges.TL
 			
 		if resizing and current_edge == edges.BR:
-			print("bottom righ")
+			size = get_local_mouse_position()
+			update_handles_position()
 			 	
 		
 	if event.is_action_pressed("mouse_left"):
