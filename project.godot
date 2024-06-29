@@ -25,7 +25,7 @@ gdscript/warnings/untyped_declaration=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/linepath2d/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

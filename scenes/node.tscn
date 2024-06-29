@@ -33,31 +33,32 @@ offset_left = 0.512001
 offset_top = 0.152008
 offset_right = -0.512001
 offset_bottom = -1.15201
-mouse_filter = 1
+mouse_default_cursor_shape = 9
 theme_override_styles/panel = SubResource("StyleBoxFlat_m7f50")
 script = ExtResource("1_33khk")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Outline" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 12
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Outline"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gj3vu")
 
-[node name="TextBox" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Outline/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 0
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer/PanelContainer/TextBox"]
+[node name="TextEdit" type="TextEdit" parent="Outline/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
@@ -111,5 +112,8 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="Pointers"]
 texture = ExtResource("2_ye5ua")
 
-[connection signal="gui_input" from="MarginContainer/PanelContainer/TextBox" to="." method="_on_gui_input"]
-[connection signal="gui_input" from="MarginContainer/PanelContainer/TextBox/TextEdit" to="." method="_on_text_edit_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="gui_input" from="Outline" to="." method="_on_margin_container_gui_input"]
+[connection signal="gui_input" from="Outline/PanelContainer/MarginContainer" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="Outline/PanelContainer/MarginContainer/TextEdit" to="." method="_on_text_edit_gui_input"]

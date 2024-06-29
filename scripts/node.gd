@@ -3,20 +3,23 @@ extends Control
 
 signal picked_up
 
+var hovering := false
 
 @onready var text := %TextEdit
-@onready var text_box := %TextBox
+@onready var text_box := %MarginContainer
 @onready var handles := $Handles
+@onready var outline := %Outline
 
 var local_mouse_offset: Vector2
 
 func _ready() -> void:
 	update_handles_position()
+		
 			
 func _on_text_edit_gui_input(event: InputEventMouse) -> void:
-
 	if event is InputEventMouse:
 		_on_gui_input(event)
+	
 	
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
@@ -36,6 +39,7 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			
 	if event.is_action_released("mouse_left"):
 		drop()
+	
 		
 func pickup() -> void:
 	disable_text_field()
@@ -47,30 +51,38 @@ func drop() -> void:
 	Global.active_node = null
 	#text.editable = true
 
+
 func move_down() -> void:
 	z_index -= 1
 	clamp_zindex()
+
 
 func move_up() -> void:
 	picked_up.emit()
 	z_index = Global.node_count
 	clamp_zindex()
+	
 		
 func clamp_zindex() -> void:
 	z_index = clamp(z_index, -INF, Global.node_count)
 
+
 func holding_down() -> bool:
 	return Input.is_action_pressed("mouse_left")
+
 
 func disable_text_field() -> void:
 	text.editable = false
 	
+
 func enable_text_field() -> void:
 	text.editable = true
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		disable_text_field()
+
 
 func update_handles_position() -> void:
 	var handles_children := handles.get_children()
@@ -78,6 +90,7 @@ func update_handles_position() -> void:
 	handles_children[1].position = Vector2(size.x / 2, size.y) - handles_children[1].size / 2
 	handles_children[2].position = Vector2(size.x, size.y / 2) - handles_children[2].size / 2
 	handles_children[3].position = Vector2(size.x / 2, 0) - handles_children[3].size / 2
+
 		
 func _moved() -> void:
 	for handle in handles.get_children():
@@ -85,4 +98,18 @@ func _moved() -> void:
 			handle._node_moved()
 
 
+func _on_mouse_entered() -> void:
+	hovering = true
 
+
+func _on_mouse_exited() -> void:
+	hovering = false
+
+
+func _on_margin_container_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var offset: Vector2 = event.position
+		
+		offset -= outline.size / 2
+		offset = offset.normalized()
+		print(offset)

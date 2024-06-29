@@ -30,7 +30,7 @@ func _on_gui_input(event: InputEventMouse) -> void:
 				await get_tree().process_frame
 				Global.active_pointer.move_point(1, get_local_mouse_position())
 			await get_tree().process_frame
-			#Global.active_pointer.start_pos = self
+			
 			if Global.active_pointer != null:
 				if Global.active_pointer.end_pos == null:
 					nevermind_pointer_invalid_sowwy()
@@ -52,7 +52,6 @@ func _process(_delta: float) -> void:
 			
 func set_second_point() -> void:
 	var handles_on_same_node := get_parent().get_children()
-	#print(handles_on_same_node)
 	if Global.active_pointer.start_pos not in handles_on_same_node:
 		Global.active_pointer.end_pos = self
 		pointer_ends.push_back(Global.active_pointer)
