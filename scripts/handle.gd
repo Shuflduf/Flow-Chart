@@ -66,6 +66,7 @@ func set_second_point() -> void:
 	if Global.active_pointer.start_pos != self:
 		Global.active_pointer.end_pos = self
 		print("funy")
+		Global.active_pointer = null
 	else:
 		Global.active_pointer.queue_free()
 
