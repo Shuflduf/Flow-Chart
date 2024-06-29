@@ -3,12 +3,12 @@ extends Line2D
 
 const CENTER = Vector2(8, 8)
 
-var start_pos: Handle:
-	set(value):
-		move_point_to_handle(value, true)
-var end_pos: Handle:
-	set(value):
-		move_point_to_handle(value)
+#var start_pos: Handle:
+	#set(value):
+		#move_point_to_handle(value, true)
+#var end_pos: Handle:
+	#set(value):
+		#move_point_to_handle(value)
 
 func create(one: Vector2, two: Vector2) -> PackedVector2Array:
 	return PackedVector2Array([one, two])
@@ -22,11 +22,11 @@ func move_point_to_handle(handle: Handle, first_point := false) -> void:
 	else:
 		move_point(1, handle.global_position - global_position + CENTER)
 
-func update_pos() -> void:
-	move_point_to_handle(end_pos)
-
-func _process(_delta: float) -> void:
-	print(start_pos)
-
-func set_start_pos(handle: Handle) -> void:
-	start_pos = handle
+#func update_pos() -> void:
+	#move_point_to_handle(end_pos)
+#
+#func _process(_delta: float) -> void:
+	#print(end_pos)
+#
+#func set_start_pos(handle: Handle) -> void:
+	#start_pos = handle

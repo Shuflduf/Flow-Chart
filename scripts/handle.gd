@@ -3,6 +3,7 @@ extends Panel
 
 var mouse_in_area := false
 var pointer_ends: Array[Pointer]
+var pointer_starts: Array[Pointer]
 
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
