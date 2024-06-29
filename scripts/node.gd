@@ -117,5 +117,7 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 			outline.mouse_default_cursor_shape = CURSOR_HSIZE
 		elif abs(offset.y) > Global.settings.drag_margins:
 			outline.mouse_default_cursor_shape = CURSOR_VSIZE
+		elif round(abs(offset.x - offset.y)) == 1:
+			outline.mouse_default_cursor_shape = CURSOR_BDIAGSIZE
 		else:
-			print(offset.x + abs(offset.y))
+			outline.mouse_default_cursor_shape = CURSOR_FDIAGSIZE
