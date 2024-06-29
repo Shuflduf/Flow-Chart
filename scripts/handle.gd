@@ -34,8 +34,9 @@ func _on_gui_input(event: InputEventMouse) -> void:
 				await get_tree().process_frame
 				Global.active_pointer.move_point(1, get_local_mouse_position())
 			await get_tree().process_frame
-			if Global.active_pointer.end_pos == null:
-				nevermind_pointer_invalid_sowwy()
+			if Global.active_pointer != null:
+				if Global.active_pointer.end_pos == null:
+					nevermind_pointer_invalid_sowwy()
 		
 	#if Global.active_pointer == null
 			 #and Global.active_pointer.start_pos != self:
