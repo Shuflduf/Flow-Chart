@@ -1,20 +1,27 @@
 class_name Pointer
 extends Line2D
 
+
 const CENTER = Vector2(8, 8)
 
-#var start_pos: Handle:
-	#set(value):
-		#move_point_to_handle(value, true)
-#var end_pos: Handle:
-	#set(value):
-		#move_point_to_handle(value)
+var start_pos: Handle:
+	set(value):
+		move_point_to_handle(value, true)
+	get:
+		return start_pos
+var end_pos: Handle:
+	set(value):
+		move_point_to_handle(value)
+	get:
+		return end_pos
+
 
 func create(one: Vector2, two: Vector2) -> PackedVector2Array:
 	return PackedVector2Array([one, two])
 
 func move_point(index: int, pos: Vector2) -> void:
 	points[index] = pos
+
 
 func move_point_to_handle(handle: Handle, first_point := false) -> void:
 	if first_point:
@@ -30,3 +37,4 @@ func move_point_to_handle(handle: Handle, first_point := false) -> void:
 #
 #func set_start_pos(handle: Handle) -> void:
 	#start_pos = handle
+

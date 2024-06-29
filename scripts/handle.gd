@@ -23,20 +23,24 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			new_pointer.points = new_pointer.create(Vector2.ZERO, get_local_mouse_position())
 			new_pointer.default_color = Color.BLACK
 			new_pointer.z_index = -4000
-			new_pointer.set_start_pos(self)
+			pointer_starts.push_back(new_pointer)
 			
 			add_child(new_pointer)
 			#call_deferred("add_child", new_pointer)
 			Global.active_pointer = get_children()[-1]
+			var pointer_connected := false
+			Global.active_pointer.connected.connect(func() -> void: 
+				pointer_connected = true
+				print("fkjghjkfngf"))
 			#Global.active_pointer.set_start_pos(self)
 			while holding_down():
 				await get_tree().process_frame
 				Global.active_pointer.move_point(1, get_local_mouse_position())
 			await get_tree().process_frame
 			#Global.active_pointer.start_pos = self
-			if Global.active_pointer != null:
-				if Global.active_pointer.end_pos == null:
-					nevermind_pointer_invalid_sowwy()
+			#if Global.active_pointer != null:
+				#if Global.active_pointer.end_pos == null:
+					#nevermind_pointer_invalid_sowwy()
 			
 func holding_down() -> bool:
 	return Input.is_action_pressed("mouse_left")
@@ -52,14 +56,15 @@ func _process(_delta: float) -> void:
 	if mouse_in_area:
 		if Input.is_action_just_released("mouse_left"):
 			set_second_point()
-		print(pointer_ends)
+		print(pointer_starts)
 			
 func set_second_point() -> void:
 	var handles_on_same_node := get_parent().get_children()
 	#print(handles_on_same_node)
-	if Global.active_pointer.start_pos not in handles_on_same_node:
-		Global.active_pointer.end_pos = self
+	if true:
+		#Global.active_pointer.end_pos = self
 		pointer_ends.push_back(Global.active_pointer)
+		Global.active_pointer
 		Global.active_pointer = null
 	else:
 		nevermind_pointer_invalid_sowwy()
