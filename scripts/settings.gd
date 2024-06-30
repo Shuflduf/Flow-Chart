@@ -6,3 +6,4 @@ extends Resource
 @export var grid_resolution := 25
 @export var min_size := 64
 @export var max_size := 512
+@export var inverse_scroll := false

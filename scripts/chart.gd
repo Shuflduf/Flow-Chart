@@ -4,6 +4,8 @@ var grid_mover := GridMover.new()
 var moving_chart := false
 var mouse_offset: Vector2
 
+var cam_zoom := 1.0
+
 @onready var nodes: Control = $Nodes
 
 func _process(_delta: float) -> void:
@@ -50,4 +52,10 @@ func _on_gui_input(event: InputEvent) -> void:
 						
 	if event.is_action_released("mouse_left"):
 		moving_chart = false
-		print("jhfg")
+		
+	if event.is_pressed():
+		match event.button_index:
+			MOUSE_BUTTON_WHEEL_UP:
+				nodes.scale += Vector2(0.1, 0.1)
+			MOUSE_BUTTON_WHEEL_DOWN:
+				nodes.scale -= Vector2(0.1, 0.1)
