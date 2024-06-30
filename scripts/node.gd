@@ -32,13 +32,15 @@ func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
 		local_mouse_offset = global_position - event.global_position
 		var moving := false
-		var temp : float
+		var margin_handler := MouseMarginer.new()
+		margin_handler.start_pos = local_mouse_offset
 		while !moving and holding_down():
 			await get_tree().process_frame
-			temp = (local_mouse_offset - \
-				(global_position - get_global_mouse_position())).length()
-			print(temp)
-			moving = abs(temp) > Global.settings.mouse_margin
+			if margin_handler.passed_threshold(get_local_mouse_position()):
+				moving = true
+			#temp = (local_mouse_offset - \
+				#(global_position - get_global_mouse_position())).length()
+			#moving = abs(temp) > Global.settings.mouse_margin
 		
 		if moving:
 			pickup()
@@ -104,15 +106,7 @@ func _moved() -> void:
 	for handle in handles.get_children():
 		if handle is Handle:
 			handle._node_moved()
-
-
-func _on_mouse_entered() -> void:
-	hovering = true
-	print("INjkhbfdkjg")
-
-func _on_mouse_exited() -> void:
-	hovering = false
-
+			
 
 func _on_margin_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

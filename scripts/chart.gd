@@ -3,6 +3,7 @@ extends Control
 var actual_pos : Vector2
 var grid_pos : Vector2i
 var grid_mover := GridMover.new()
+var moving_chart := false
 
 func _process(_delta: float) -> void:
 	if Global.active_node != null:
@@ -25,8 +26,7 @@ func move_all_nodes_down() -> void:
 		if child is FlowChartNode:
 			Global.nodes_indicies.push_front(child.z_index)
 			child.move_down()
-
-#func move_grid() -> void:
-	#grid_pos = actual_pos / Global.settings.grid_resolution
-	#Global.active_node.global_position = grid_pos * Global.settings.grid_resolution
 	
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("mouse_left"):
+		pass
