@@ -30,7 +30,8 @@ func _on_text_edit_gui_input(event: InputEventMouse) -> void:
 	
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
-		local_mouse_offset = text_box.global_position - event.global_position
+		local_mouse_offset = global_position - event.global_position
+		print(local_mouse_offset)
 		var moving := false
 		var temp : float
 		while !moving and holding_down():

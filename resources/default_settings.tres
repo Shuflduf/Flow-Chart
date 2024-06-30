@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_sd5p4")
-grid = true
-mouse_margin = 10.0
+grid = false
+mouse_margin = 0.0
 handles_mouse_margin = 5.0
 grid_resolution = 32
 drag_margins = 0.85
