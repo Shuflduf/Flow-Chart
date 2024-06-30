@@ -43,9 +43,23 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			pickup()
 		else:
 			enable_text_field()
+		return
 			
 	if event.is_action_released("mouse_left"):
 		drop()
+		return
+	
+	if event.is_action_pressed("delete"):
+		for handle: Handle in handles.get_children():
+			for pointer: Pointer in handle.get_children():
+				pointer.end_pos.pointer_ends.erase(pointer)
+				pointer.queue_free()
+				
+			for pointer: Pointer in handle.pointer_ends:
+				pointer.queue_free()
+		
+		queue_free()
+		
 	
 		
 func pickup() -> void:
