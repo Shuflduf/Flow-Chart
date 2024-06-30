@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cisd665csrxj8"]
+
+[ext_resource type="Script" path="res://scripts/pointer.gd" id="1_3y42a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8h7ev"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Pointer" type="Panel"]
+show_behind_parent = true
+z_index = -4000
+anchors_preset = -1
+anchor_right = 0.043
+anchor_bottom = 0.077
+offset_right = 0.463997
+offset_bottom = 0.103996
+grow_vertical = 2
+pivot_offset = Vector2(5, 5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8h7ev")
+script = ExtResource("1_3y42a")

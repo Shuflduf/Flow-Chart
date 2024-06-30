@@ -37,8 +37,6 @@ func move_all_nodes_down() -> void:
 			child.move_down()
 	
 
-
-
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
 		mouse_offset = nodes.global_position - event.global_position
@@ -66,11 +64,12 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func _zoom_at_point(zoom_change: float, mouse_position: Vector2) -> void:
-	print(nodes.scale)
 	if (!nodes.scale > Vector2(10, 10) or zoom_change < 1)\
 			and (!nodes.scale < Vector2(0.2, 0.2) or zoom_change > 1):
 		nodes.scale = nodes.scale * zoom_change
 		var delta := (mouse_position - nodes.global_position) * (zoom_change - 1)
 		nodes.global_position = nodes.global_position - delta
-	#nodes.scale = clamp(nodes.scale, Vector2(0.1, 0.1), Vector2(10, 10))
+		
+		
+
 

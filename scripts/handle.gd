@@ -10,6 +10,7 @@ var pointer_ends: Array[Pointer]
 const HANDLE_TEX = preload("res://resources/handle.tres")
 const NO_TEXTURE = preload("res://resources/no_texture.tres")
 
+const POINTER = preload("res://scenes/pointer.tscn")
 
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
@@ -23,20 +24,22 @@ func _on_gui_input(event: InputEventMouse) -> void:
 				moving = true
 		
 		if moving:
-			var new_pointer := Pointer.new()
+			var new_pointer: Pointer = POINTER.instantiate()
 			
-			new_pointer.points = new_pointer.create(Vector2.ZERO, get_local_mouse_position())
-			new_pointer.default_color = Color.BLACK
-			new_pointer.z_index = -4000
 			new_pointer.start_pos = self
-			new_pointer.begin_cap_mode = Line2D.LINE_CAP_ROUND
-			new_pointer.end_cap_mode = Line2D.LINE_CAP_ROUND
+			new_pointer.size = Vector2(10, 10)
+			new_pointer.pivot_offset = Vector2(5, 5)
 			
 			add_child(new_pointer)
 			Global.active_pointer = get_children()[-1]
 			while holding_down():
 				await get_tree().process_frame
-				Global.active_pointer.move_point(1, get_local_mouse_position())
+				Global.active_pointer.size.x = get_local_mouse_position().length()
+				var dir_to_look := rad_to_deg((global_position - get_global_mouse_position()).angle())
+				#dir_to_look += 180
+				#dir_to_look %=
+				print(dir_to_look)
+				Global.active_pointer.rotation_degrees = dir_to_look
 			await get_tree().process_frame
 			
 			if Global.active_pointer != null:
