@@ -131,17 +131,19 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		
 			
 		if resizing:
+			var grid_mover := GridMover.new()
+			
 			match current_edge:
 				edges.T:
-					size.y -= get_local_mouse_position().y
-					position.y += get_local_mouse_position().y
+					size.y -= grid_mover.move_grid(get_local_mouse_position()).y
+					position.y += grid_mover.move_grid(get_local_mouse_position()).y
 				edges.B:
-					size.y = get_local_mouse_position().y
+					size.y = grid_mover.move_grid(get_local_mouse_position()).y
 				edges.L:
-					size.x -= get_local_mouse_position().x
-					position.x += get_local_mouse_position().x
+					size.x -= grid_mover.move_grid(get_local_mouse_position()).x
+					position.x += grid_mover.move_grid(get_local_mouse_position()).x
 				edges.R:
-					size.x = get_local_mouse_position().x
+					size.x = grid_mover.move_grid(get_local_mouse_position()).x
 			
 		
 			
