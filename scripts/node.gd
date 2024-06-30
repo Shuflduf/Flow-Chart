@@ -120,16 +120,15 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		offset -= outline.size / 2
 		offset /= outline.size
 		offset *= 2
-		print(get_local_mouse_position())
 		
-		if abs(offset.x) > abs(offset.y):
-			outline.mouse_default_cursor_shape = CURSOR_HSIZE
-			if !resizing:
+		if !resizing:
+			if abs(offset.x) > abs(offset.y):
+				outline.mouse_default_cursor_shape = CURSOR_HSIZE
 				current_edge = edges.L if offset.x < 0 else edges.R
-		else:
-			outline.mouse_default_cursor_shape = CURSOR_VSIZE
-			if !resizing:
+			else:
+				outline.mouse_default_cursor_shape = CURSOR_VSIZE
 				current_edge = edges.T if offset.y < 0 else edges.B
+		
 			
 		if resizing:
 			match current_edge:
@@ -137,9 +136,17 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 					size.y -= get_local_mouse_position().y
 					position.y += get_local_mouse_position().y
 				edges.B:
-					size.y -= (get_local_mouse_position().y - size.y)
-					
-			update_handles_position()
+					size.y = get_local_mouse_position().y
+				edges.L:
+					size.x -= get_local_mouse_position().x
+					position.x += get_local_mouse_position().x
+				edges.R:
+					size.x = get_local_mouse_position().x
+			
+		
+			
+		size.x = clamp(size.x, Global.settings.min_size, Global.settings.max_size)	
+		update_handles_position()
 			 	
 		
 	if event.is_action_pressed("mouse_left"):
