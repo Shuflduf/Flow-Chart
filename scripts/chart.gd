@@ -29,7 +29,10 @@ func move_all_nodes_down() -> void:
 			Global.nodes_indicies.push_front(child.z_index)
 			child.move_down()
 	
-func _on_gui_input(event: InputEvent) -> void:
+
+
+func _on_sub_viewport_container_gui_input(event: InputEvent) -> void:
+
 	if event.is_action_pressed("mouse_left"):
 		mouse_offset = global_position - event.global_position
 		var margin_handler := MouseMarginer.new()
@@ -38,7 +41,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			await get_tree().process_frame
 			if margin_handler.passed_threshold(get_local_mouse_position()):
 				moving_chart = true
-				
+					
 	if event.is_action_released("mouse_left"):
 		moving_chart = false
 		print("jhfg")
