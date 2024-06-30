@@ -13,17 +13,16 @@ const NO_TEXTURE = preload("res://resources/no_texture.tres")
 
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
-		#var local_mouse_offset = 
 		
 		var moving := false
+		var margin_handler := MouseMarginer.new()
+		margin_handler.start_pos = global_position - event.global_position
 		while !moving and holding_down():
 			await get_tree().process_frame
-			moving = (event.position - get_local_mouse_position()).length()\
-				 > Global.settings.handles_mouse_margin
+			if margin_handler.passed_threshold(get_local_mouse_position()):
+				moving = true
 		
 		if moving:
-			#Global.active_handle = self
-			#print(name)
 			var new_pointer := Pointer.new()
 			
 			new_pointer.points = new_pointer.create(Vector2.ZERO, get_local_mouse_position())

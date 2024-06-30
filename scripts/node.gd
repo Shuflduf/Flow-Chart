@@ -38,9 +38,6 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			await get_tree().process_frame
 			if margin_handler.passed_threshold(get_local_mouse_position()):
 				moving = true
-			#temp = (local_mouse_offset - \
-				#(global_position - get_global_mouse_position())).length()
-			#moving = abs(temp) > Global.settings.mouse_margin
 		
 		if moving:
 			pickup()

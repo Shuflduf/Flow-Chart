@@ -1,16 +1,18 @@
 extends Control
 
-var actual_pos : Vector2
-var grid_pos : Vector2i
 var grid_mover := GridMover.new()
 var moving_chart := false
+var mouse_offset: Vector2
 
 func _process(_delta: float) -> void:
 	if Global.active_node != null:
 		Global.active_node._moved()
-		actual_pos = get_local_mouse_position() + Global.active_node.local_mouse_offset
+		var actual_pos := get_local_mouse_position() + Global.active_node.local_mouse_offset
 
-		Global.active_node.global_position = grid_mover.move_grid(actual_pos)
+		Global.active_node.position = grid_mover.move_grid(actual_pos)
+		return
+	if moving_chart:
+		global_position = get_global_mouse_position() + mouse_offset
 
 func _ready() -> void:
 	for child in get_children():
@@ -29,4 +31,14 @@ func move_all_nodes_down() -> void:
 	
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
-		pass
+		mouse_offset = global_position - event.global_position
+		var margin_handler := MouseMarginer.new()
+		margin_handler.start_pos = mouse_offset
+		while !moving_chart and Input.is_action_pressed("mouse_left"):
+			await get_tree().process_frame
+			if margin_handler.passed_threshold(get_local_mouse_position()):
+				moving_chart = true
+				
+	if event.is_action_released("mouse_left"):
+		moving_chart = false
+		print("jhfg")
