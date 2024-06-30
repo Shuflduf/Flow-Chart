@@ -28,8 +28,8 @@ func move_point_to_handle(handle: Handle, first_point := false) -> void:
 func update_pos() -> void:
 	move_point_to_handle(end_pos)
 
-func _process(_delta: float) -> void:
-	print(start_pos)
+#func _process(_delta: float) -> void:
+	#print(start_pos)
 
 
 

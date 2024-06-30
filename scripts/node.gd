@@ -148,6 +148,7 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		size.x = clamp(size.x, Global.settings.min_size, Global.settings.max_size)	
 		size.y = clamp(size.y, Global.settings.min_size, Global.settings.max_size)	
 		update_handles_position()
+		_moved()
 			 	
 		
 	if event.is_action_pressed("mouse_left"):
