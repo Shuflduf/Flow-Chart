@@ -12,27 +12,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_60yhd")
 
-[node name="Node" parent="." instance=ExtResource("1_rjsrk")]
+[node name="Nodes" type="Control" parent="."]
 layout_mode = 1
-offset_left = 283.512
-offset_top = 221.152
-offset_right = 284.488
-offset_bottom = 221.848
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Node" parent="Nodes" instance=ExtResource("1_rjsrk")]
+layout_mode = 1
+offset_left = 221.24
+offset_top = 160.96
+offset_right = 241.76
+offset_bottom = 172.978
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Node2" parent="." instance=ExtResource("1_rjsrk")]
+[node name="Node2" parent="Nodes" instance=ExtResource("1_rjsrk")]
 layout_mode = 1
-offset_left = 588.512
-offset_top = 366.152
-offset_right = 589.488
-offset_bottom = 366.848
+offset_left = 526.24
+offset_top = 305.96
+offset_right = 546.76
+offset_bottom = 317.978
 
-[node name="Node3" parent="." instance=ExtResource("1_rjsrk")]
+[node name="Node3" parent="Nodes" instance=ExtResource("1_rjsrk")]
 layout_mode = 1
-offset_left = 815.512
-offset_top = 239.152
-offset_right = 816.488
-offset_bottom = 239.848
+offset_left = 753.24
+offset_top = 178.96
+offset_right = 773.76
+offset_bottom = 190.978
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
