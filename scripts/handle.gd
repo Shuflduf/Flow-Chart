@@ -26,20 +26,15 @@ func _on_gui_input(event: InputEventMouse) -> void:
 		if moving:
 			var new_pointer: Pointer = POINTER.instantiate()
 			
-			new_pointer.start_pos = self
 			new_pointer.size = Vector2(10, 10)
 			new_pointer.pivot_offset = Vector2(5, 5)
 			
 			add_child(new_pointer)
 			Global.active_pointer = get_children()[-1]
+			Global.active_pointer.start_pos = self
 			while holding_down():
 				await get_tree().process_frame
-				Global.active_pointer.size.x = get_local_mouse_position().length()
-				var dir_to_look := rad_to_deg((-global_position + get_global_mouse_position()).angle())
-				#dir_to_look += 180
-				#dir_to_look %=
-				print(dir_to_look)
-				Global.active_pointer.rotation_degrees = dir_to_look
+				Global.active_pointer.move_end(get_local_mouse_position())
 			await get_tree().process_frame
 			
 			if Global.active_pointer != null:
@@ -84,7 +79,7 @@ func nevermind_pointer_invalid_sowwy() -> void:
 	
 func _node_moved() -> void:
 	for pointer in pointer_ends:
-		pointer.move_point_to_handle(self)
+		pointer.move_end_to_handle(self)
 		
 	for pointer in get_children():
 		pointer.update_pos()
