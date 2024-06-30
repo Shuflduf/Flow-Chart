@@ -41,7 +41,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Outline" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 0
 mouse_default_cursor_shape = 8
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -112,8 +111,8 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="Pointers"]
 texture = ExtResource("2_ye5ua")
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="gui_input" from="Outline" to="." method="_on_margin_container_gui_input"]
 [connection signal="gui_input" from="Outline/PanelContainer/MarginContainer" to="." method="_on_gui_input"]
 [connection signal="gui_input" from="Outline/PanelContainer/MarginContainer/TextEdit" to="." method="_on_text_edit_gui_input"]
+[connection signal="mouse_entered" from="Handles" to="." method="_on_handles_mouse_entered"]
+[connection signal="mouse_exited" from="Handles" to="." method="_on_handles_mouse_exited"]

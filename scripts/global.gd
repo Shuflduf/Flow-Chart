@@ -12,7 +12,6 @@ func verify_on_top() -> void:
 	await get_tree().process_frame
 	var highest := -INF
 	for i in whos_on_top:
-		#print(i.z_index)
 		if i.z_index > highest:
 			highest = i.z_index
 			active_node = i

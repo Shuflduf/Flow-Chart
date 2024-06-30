@@ -107,7 +107,7 @@ func _moved() -> void:
 
 func _on_mouse_entered() -> void:
 	hovering = true
-
+	print("INjkhbfdkjg")
 
 func _on_mouse_exited() -> void:
 	hovering = false
@@ -151,6 +151,7 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 		size.y = clamp(size.y, Global.settings.min_size, Global.settings.max_size)	
 		update_handles_position()
 		_moved()
+		#toggle_handles_texture(true)
 			 	
 		
 	if event.is_action_pressed("mouse_left"):
@@ -159,4 +160,6 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 	if event.is_action_released("mouse_left"):
 		resizing = false
 		
+		
+
 		

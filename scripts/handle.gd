@@ -1,8 +1,15 @@
 class_name Handle
 extends Panel
 
-var mouse_in_area := false
+var mouse_in_area := false:
+	set(value):
+		toggle_handles_texture(value)
+		mouse_in_area = value
 var pointer_ends: Array[Pointer]
+
+const HANDLE_TEX = preload("res://resources/handle.tres")
+const NO_TEXTURE = preload("res://resources/no_texture.tres")
+
 
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
@@ -23,6 +30,8 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			new_pointer.default_color = Color.BLACK
 			new_pointer.z_index = -4000
 			new_pointer.start_pos = self
+			new_pointer.begin_cap_mode = Line2D.LINE_CAP_ROUND
+			new_pointer.end_cap_mode = Line2D.LINE_CAP_ROUND
 			
 			add_child(new_pointer)
 			Global.active_pointer = get_children()[-1]
@@ -34,6 +43,7 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			if Global.active_pointer != null:
 				if Global.active_pointer.end_pos == null:
 					nevermind_pointer_invalid_sowwy()
+		
 			
 func holding_down() -> bool:
 	return Input.is_action_pressed("mouse_left")
@@ -42,13 +52,16 @@ func holding_down() -> bool:
 func _on_mouse_entered() -> void:
 	mouse_in_area = true
 
+
 func _on_mouse_exited() -> void:
 	mouse_in_area = false
+
 
 func _process(_delta: float) -> void:
 	if mouse_in_area:
 		if Input.is_action_just_released("mouse_left"):
 			set_second_point()
+			
 			
 func set_second_point() -> void:
 	var handles_on_same_node := get_parent().get_children()
@@ -61,9 +74,11 @@ func set_second_point() -> void:
 	else:
 		nevermind_pointer_invalid_sowwy()
 		
+		
 func nevermind_pointer_invalid_sowwy() -> void:
 	Global.active_pointer.queue_free()
 	print('remove')
+	
 	
 func _node_moved() -> void:
 	for pointer in pointer_ends:
@@ -71,3 +86,10 @@ func _node_moved() -> void:
 		
 	for pointer in get_children():
 		pointer.update_pos()
+
+
+func toggle_handles_texture(enable: bool) -> void:
+	if enable:
+		add_theme_stylebox_override("panel", HANDLE_TEX)
+	else:
+		add_theme_stylebox_override("panel", NO_TEXTURE)

@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://22388onf67bk"]
 
-[ext_resource type="StyleBox" uid="uid://ba2126hcropnr" path="res://resources/handle.tres" id="1_5fc7q"]
+[ext_resource type="StyleBox" uid="uid://dfm61y3q7yh6" path="res://resources/no_texture.tres" id="1_d2rgy"]
 [ext_resource type="Script" path="res://scripts/handle.gd" id="2_cms6t"]
 
 [node name="Handle" type="Panel"]
 offset_right = 16.0
 offset_bottom = 16.0
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = ExtResource("1_5fc7q")
+theme_override_styles/panel = ExtResource("1_d2rgy")
 script = ExtResource("2_cms6t")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
