@@ -49,13 +49,21 @@ func _on_gui_input(event: InputEvent) -> void:
 			await get_tree().process_frame
 			if margin_handler.passed_threshold(get_local_mouse_position()):
 				moving_chart = true
+		return
 						
 	if event.is_action_released("mouse_left"):
 		moving_chart = false
+		return
 		
 	if event.is_pressed():
+		nodes.pivot_offset = get_global_mouse_position()
+		print(pivot_offset)
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_UP:
-				nodes.scale += Vector2(0.1, 0.1)
+				cam_zoom += Global.settings.zoom_sens
+				nodes.scale = Vector2(cam_zoom, cam_zoom)
+				#nodes.position += get_global_mouse_position() * Vector2(cam_zoom, cam_zoom)
 			MOUSE_BUTTON_WHEEL_DOWN:
-				nodes.scale -= Vector2(0.1, 0.1)
+				cam_zoom -= Global.settings.zoom_sens
+				nodes.scale = Vector2(cam_zoom, cam_zoom)
+				#nodes.position += get_global_mouse_position() * Vector2(cam_zoom, cam_zoom)
