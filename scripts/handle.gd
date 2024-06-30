@@ -35,7 +35,7 @@ func _on_gui_input(event: InputEventMouse) -> void:
 			while holding_down():
 				await get_tree().process_frame
 				Global.active_pointer.size.x = get_local_mouse_position().length()
-				var dir_to_look := rad_to_deg((global_position - get_global_mouse_position()).angle())
+				var dir_to_look := rad_to_deg((-global_position + get_global_mouse_position()).angle())
 				#dir_to_look += 180
 				#dir_to_look %=
 				print(dir_to_look)
