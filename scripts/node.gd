@@ -60,12 +60,16 @@ func _on_gui_input(event: InputEventMouse) -> void:
 		
 		queue_free()
 		
-	
 		
 func pickup() -> void:
 	disable_text_field()
-	Global.whos_on_top.push_front(self)
-	Global.verify_on_top()
+
+	#Global.whos_on_top.push_back(self)
+	#Global.verify_on_top()
+	get_parent().move_child(self, -1)
+	Global.active_node = self
+	print(get_index())
+	#Global.test_arr.push_back(925745)
 		
 
 func drop() -> void:
@@ -73,9 +77,9 @@ func drop() -> void:
 	#text.editable = true
 
 
-func move_down() -> void:
-	z_index -= 1
-	clamp_zindex()
+#func move_down() -> void:
+	#z_index -= 1
+	#clamp_zindex()
 
 
 func move_up() -> void:

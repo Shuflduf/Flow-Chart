@@ -8,9 +8,9 @@ var cam_zoom := 1.0
 
 @onready var nodes: Control = $Nodes
 
+const CHART_NODE = preload("res://scenes/node.tscn")
+
 func _process(_delta: float) -> void:
-	
-	
 	if Global.active_node != null:
 		Global.active_node._moved()
 		var actual_pos := get_local_mouse_position() + Global.active_node.local_mouse_offset
@@ -21,20 +21,20 @@ func _process(_delta: float) -> void:
 	if moving_chart:
 		nodes.position = get_global_mouse_position() + mouse_offset
 
+
 func _ready() -> void:
-	for child in get_children():
-		if child is FlowChartNode:
-			child.z_index = Global.node_count
-			child.picked_up.connect(func() -> void: move_all_nodes_down())
-			Global.node_count += 1
-			Global.nodes_indicies.push_front(child.z_index)
+	update_node_count()
+	
+
+func update_node_count() -> void:
+	Global.node_count = nodes.get_child_count()
+
 
 func move_all_nodes_down() -> void:
-	Global.nodes_indicies.clear()
-	for child in get_children():
-		if child is FlowChartNode:
-			Global.nodes_indicies.push_front(child.z_index)
-			child.move_down()
+	#for child in nodes.get_children():
+		#if child is FlowChartNode:
+			#child.move_down()
+	pass
 	
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -71,5 +71,11 @@ func _zoom_at_point(zoom_change: float, mouse_position: Vector2) -> void:
 		nodes.global_position = nodes.global_position - delta
 		
 		
-
+func add_node() -> void:
+	var new_node := CHART_NODE.instantiate()
+	new_node.global_position = Vector2.ZERO
+	new_node.picked_up.connect(func() -> void: move_all_nodes_down())
+	nodes.add_child(new_node)
+	Global.node_count += 1
+	
 

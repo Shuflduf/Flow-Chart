@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://capk7rweurlfj"]
+[gd_scene load_steps=3 format=3 uid="uid://capk7rweurlfj"]
 
 [ext_resource type="PackedScene" uid="uid://ecmwxqsguydy" path="res://scenes/chart.tscn" id="1_v8b4m"]
+[ext_resource type="PackedScene" uid="uid://cco2yqhf6mfnp" path="res://scenes/ui.tscn" id="2_lx73m"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -29,3 +30,8 @@ size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Chart" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_v8b4m")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" node_paths=PackedStringArray("chart") instance=ExtResource("2_lx73m")]
+chart = NodePath("../../SubViewportContainer/SubViewport/Chart")

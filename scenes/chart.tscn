@@ -39,6 +39,10 @@ offset_bottom = 317.978
 
 [node name="Node3" parent="Nodes" instance=ExtResource("1_rjsrk")]
 layout_mode = 1
+anchor_left = -0.0748611
+anchor_top = -0.0693827
+anchor_right = 0.0371389
+anchor_bottom = 0.13016
 offset_left = 753.24
 offset_top = 178.96
 offset_right = 773.76

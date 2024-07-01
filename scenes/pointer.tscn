@@ -12,7 +12,6 @@ corner_radius_bottom_left = 20
 [node name="Pointer" type="Panel"]
 show_behind_parent = true
 z_index = -4000
-anchors_preset = -1
 offset_right = 10.0
 offset_bottom = 10.0
 grow_vertical = 2
