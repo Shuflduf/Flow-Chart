@@ -63,33 +63,13 @@ func _on_gui_input(event: InputEventMouse) -> void:
 		
 func pickup() -> void:
 	disable_text_field()
-
-	#Global.whos_on_top.push_back(self)
-	#Global.verify_on_top()
 	get_parent().move_child(self, -1)
 	Global.active_node = self
-	print(get_index())
-	#Global.test_arr.push_back(925745)
+
 		
 
 func drop() -> void:
 	Global.active_node = null
-	#text.editable = true
-
-
-#func move_down() -> void:
-	#z_index -= 1
-	#clamp_zindex()
-
-
-func move_up() -> void:
-	picked_up.emit()
-	z_index = Global.node_count
-	clamp_zindex()
-	
-		
-func clamp_zindex() -> void:
-	z_index = clamp(z_index, -INF, Global.node_count)
 
 
 func holding_down() -> bool:
@@ -142,7 +122,7 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 			
 		if resizing:
 			var grid_mover := GridMover.new()
-			
+			get_parent().move_child(self, -1)
 			match current_edge:
 				edges.T:
 					size.y -= grid_mover.move_grid(get_local_mouse_position()).y

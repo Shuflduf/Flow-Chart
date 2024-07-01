@@ -22,21 +22,6 @@ func _process(_delta: float) -> void:
 		nodes.position = get_global_mouse_position() + mouse_offset
 
 
-func _ready() -> void:
-	update_node_count()
-	
-
-func update_node_count() -> void:
-	Global.node_count = nodes.get_child_count()
-
-
-func move_all_nodes_down() -> void:
-	#for child in nodes.get_children():
-		#if child is FlowChartNode:
-			#child.move_down()
-	pass
-	
-
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
 		mouse_offset = nodes.global_position - event.global_position
@@ -74,8 +59,7 @@ func _zoom_at_point(zoom_change: float, mouse_position: Vector2) -> void:
 func add_node() -> void:
 	var new_node := CHART_NODE.instantiate()
 	new_node.global_position = Vector2.ZERO
-	new_node.picked_up.connect(func() -> void: move_all_nodes_down())
 	nodes.add_child(new_node)
-	Global.node_count += 1
+
 	
 
