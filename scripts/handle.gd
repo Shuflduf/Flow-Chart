@@ -11,7 +11,7 @@ const HANDLE_TEX = preload("res://resources/handle.tres")
 const NO_TEXTURE = preload("res://resources/no_texture.tres")
 
 const POINTER = preload("res://scenes/pointer.tscn")
-#
+
 #func save() -> Dictionary:
 	#var save_dict := {
 		#"filename" : get_scene_file_path(),

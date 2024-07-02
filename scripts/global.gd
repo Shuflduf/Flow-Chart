@@ -6,7 +6,7 @@ var active_pointer: Pointer
 @export var settings: Settings = preload("res://resources/default_settings.tres")
 
 func save_chart() -> void:
-	var save_chart := FileAccess.open("user://save1.flchrt", FileAccess.WRITE)
+	var save_chart_file := FileAccess.open("user://save1.flchrt", FileAccess.WRITE)
 	var save_nodes := get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
 		if node.scene_file_path.is_empty():
@@ -21,7 +21,7 @@ func save_chart() -> void:
 		
 		var json_string := JSON.stringify(node_data)
 		
-		save_chart.store_line(json_string)
+		save_chart_file.store_line(json_string)
 
 
 func load_chart() -> void:
@@ -35,6 +35,9 @@ func load_chart() -> void:
 	# the object it represents.
 	var save_game := FileAccess.open("user://save1.flchrt", FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
+		## delay effect
+		#for i in 10:
+			#await get_tree().process_frame
 		var json_string := save_game.get_line()
 
 		# Creates the helper class to interact with JSON
@@ -51,13 +54,18 @@ func load_chart() -> void:
 
 		# Firstly, we need to create the object and add it to the tree and set its position.
 		var new_object: Node = load(node_data["filename"]).instantiate()
-		get_node(node_data["parent"]).add_child(new_object)
+		get_node(node_data["parent"]).call_deferred("add_child", new_object) #.add_child(new_object)
+		
 		if node_data.has("pos_x"):
 			new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
-			new_object.size = Vector2(node_data["size_x"], node_data["size_y"])
-
+			#new_object.size = Vector2(node_data["size_x"], node_data["size_y"])
+			new_object.set_deferred("size", Vector2(node_data["size_x"], node_data["size_y"]))
+		#if node_data.has("text"):
+			#print("funnies")
+			#new_object.text = node_data["text"]
 		# Now we set the remaining variables.
 		for i: StringName in node_data.keys():
 			if i in ["filename", "parent", "pos_x", "pos_y", "size_x", "size_y"]:
 				continue
 			new_object.set(i, node_data[i])
+			

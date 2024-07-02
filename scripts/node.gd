@@ -27,7 +27,7 @@ func save() -> Dictionary:
 		"pos_y" : position.y,
 		"size_x" : size.x,
 		"size_y" : size.y,
-		"text" : text.text,
+		"text" : %TextEdit.text,
 	}
 	return save_dict
 
