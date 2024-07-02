@@ -54,9 +54,10 @@ func load_chart() -> void:
 		get_node(node_data["parent"]).add_child(new_object)
 		if node_data.has("pos_x"):
 			new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+			new_object.size = Vector2(node_data["size_x"], node_data["size_y"])
 
 		# Now we set the remaining variables.
 		for i: StringName in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+			if i in ["filename", "parent", "pos_x", "pos_y", "size_x", "size_y"]:
 				continue
 			new_object.set(i, node_data[i])
