@@ -58,7 +58,7 @@ func _zoom_at_point(zoom_change: float, mouse_position: Vector2) -> void:
 		
 func add_node() -> void:
 	var new_node := CHART_NODE.instantiate()
-	new_node.global_position = Vector2.ZERO
+	new_node.position = (-nodes.global_position + ((nodes.size / 2) * nodes.scale))
 	nodes.add_child(new_node)
 
 	

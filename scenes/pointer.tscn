@@ -11,11 +11,14 @@ corner_radius_bottom_left = 20
 
 [node name="Pointer" type="Panel"]
 show_behind_parent = true
+top_level = true
 z_index = -4000
 offset_right = 10.0
 offset_bottom = 10.0
 grow_vertical = 2
 pivot_offset = Vector2(5, 5)
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_8h7ev")
 script = ExtResource("1_3y42a")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

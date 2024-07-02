@@ -7,6 +7,7 @@ var start_pos: Handle:
 	set(value):
 		start_pos = value
 		global_position = value.global_position
+		#move_end(end_pos.position)
 		
 var end_pos: Handle:
 	set(value):
@@ -23,8 +24,11 @@ func move_end_to_handle(handle: Handle) -> void:
 	move_end(handle.global_position - get_parent().global_position)
 
 func update_pos() -> void:
+	global_position = start_pos.global_position
 	move_end_to_handle(end_pos)
 
 
-
-
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("delete"):
+		end_pos.pointer_ends.erase(self)
+		queue_free()
