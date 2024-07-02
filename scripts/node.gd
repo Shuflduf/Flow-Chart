@@ -19,6 +19,18 @@ enum edges {
 
 var current_edge: edges
 
+func save() -> Dictionary:
+	var save_dict := {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"size_x" : size.x,
+		"size_y" : size.y,
+		"text" : text.text,
+	}
+	return save_dict
+
 func _ready() -> void:
 	update_handles_position()
 		
@@ -67,7 +79,6 @@ func pickup() -> void:
 	Global.active_node = self
 
 		
-
 func drop() -> void:
 	Global.active_node = null
 

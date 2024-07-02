@@ -9,7 +9,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Pointer" type="Panel"]
+[node name="Pointer" type="Panel" groups=["Persist"]]
 show_behind_parent = true
 top_level = true
 z_index = -4000

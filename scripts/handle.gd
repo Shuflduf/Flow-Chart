@@ -12,6 +12,15 @@ const NO_TEXTURE = preload("res://resources/no_texture.tres")
 
 const POINTER = preload("res://scenes/pointer.tscn")
 
+func save() -> Dictionary:
+	var save_dict := {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pointer_ends" : pointer_ends,
+	}
+	return save_dict
+
+
 func _on_gui_input(event: InputEventMouse) -> void:
 	if event.is_action_pressed("mouse_left"):
 		

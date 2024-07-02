@@ -14,6 +14,15 @@ var end_pos: Handle:
 		move_end_to_handle(value)
 		end_pos = value
 
+func save() -> Dictionary:
+	var save_dict := {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"start_pos" : start_pos,
+		"end_pos" : end_pos
+	}
+	return save_dict
+
 
 func move_end(pos: Vector2) -> void:
 	size.x = pos.length() + 10

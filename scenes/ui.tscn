@@ -30,4 +30,14 @@ mouse_filter = 2
 layout_mode = 2
 text = "Add Node"
 
+[node name="SaveChart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Save Chart"
+
+[node name="LoadChart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Load Chart"
+
 [connection signal="pressed" from="VBoxContainer/NewNode" to="." method="_on_new_node_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveChart" to="." method="_on_save_chart_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadChart" to="." method="_on_load_chart_pressed"]

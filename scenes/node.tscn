@@ -23,7 +23,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 16
 
-[node name="Node" type="PanelContainer"]
+[node name="Node" type="PanelContainer" groups=["Persist"]]
 anchors_preset = -1
 anchor_left = -0.056
 anchor_top = -0.099
