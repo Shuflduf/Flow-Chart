@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 		
 	if moving_chart:
 		nodes.position = get_global_mouse_position() + mouse_offset
+		update_all_nodes()
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -54,12 +55,16 @@ func _zoom_at_point(zoom_change: float, mouse_position: Vector2) -> void:
 		nodes.scale = nodes.scale * zoom_change
 		var delta := (mouse_position - nodes.global_position) * (zoom_change - 1)
 		nodes.global_position = nodes.global_position - delta
+		update_all_nodes()
 		
 		
 func add_node() -> void:
 	var new_node := CHART_NODE.instantiate()
-	new_node.position = (-nodes.global_position + ((nodes.size / 2) * nodes.scale))
+	print(nodes.global_position / nodes.scale)
+	new_node.global_position = (-nodes.global_position / nodes.scale)# - (nodes.global_position * 2)
 	nodes.add_child(new_node)
 
 	
-
+func update_all_nodes() -> void:
+	for node in nodes.get_children():
+			node._moved()
