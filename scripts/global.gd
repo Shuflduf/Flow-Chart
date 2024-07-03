@@ -20,7 +20,6 @@ func save_chart() -> void:
 			continue
 		
 		var node_data: Dictionary = node.call("save")
-		print(node_data["text"])
 		
 		var json_string := JSON.stringify(node_data)
 		
@@ -59,15 +58,15 @@ func load_chart() -> void:
 		
 		if node_data.has("pos_x"):
 			new_object.set_deferred("position", Vector2(node_data["pos_x"], node_data["pos_y"]))
-			#new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
-			print(new_object.position)
-			#new_object.size = Vector2(node_data["size_x"], node_data["size_y"])
-			new_object.set_deferred("size", Vector2(node_data["size_x"], node_data["size_y"]))
+			
+			if new_object is FlowChartNode or Pointer:
+				print("trjenj")
+				new_object.set_deferred("size", Vector2(node_data["size_x"], node_data["size_y"]))
 			
 		if node_data.has("text"):
 			#print("GNJDGN")
 			#print(node_data["text"])
-			print(new_object is FlowChartNode)
+			#print(new_object is FlowChartNode)
 			new_object.set_text(node_data["text"])
 			
 		for i: StringName in node_data.keys():
