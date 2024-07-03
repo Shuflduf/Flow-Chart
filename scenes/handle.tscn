@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://dfm61y3q7yh6" path="res://resources/no_texture.tres" id="1_d2rgy"]
 [ext_resource type="Script" path="res://scripts/handle.gd" id="2_cms6t"]
 
-[node name="Handle" type="Panel"]
+[node name="Handle" type="Panel" groups=["Persist"]]
 offset_right = 16.0
 offset_bottom = 16.0
 mouse_default_cursor_shape = 2

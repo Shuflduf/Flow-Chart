@@ -8,3 +8,4 @@ extends Resource
 @export var max_size := 512
 @export var inverse_scroll := false
 @export_range(0.0, 1.0, 0.1) var zoom_sens := 1.1
+@export var load_default := true

@@ -5,7 +5,9 @@ var active_pointer: Pointer
 
 @export var settings: Settings = preload("res://resources/default_settings.tres")
 
+var loading := false
 signal finished_loading
+
 
 func save_chart() -> void:
 	var save_chart_file := FileAccess.open("user://save1.flchrt", FileAccess.WRITE)
@@ -32,8 +34,11 @@ func load_chart() -> void:
 		
 	for i in get_tree().get_nodes_in_group("Persist"):
 		i.queue_free()
-
-	var save_game := FileAccess.open("user://save1.flchrt", FileAccess.READ)
+	
+	loading = true
+	var save_game := FileAccess.open(\
+			"user://save1.flchrt" if !settings.load_default else \
+			"user://default.flchrt", FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
 		## delay effect
 		#for i in 10:
@@ -54,23 +59,28 @@ func load_chart() -> void:
 
 		# Firstly, we need to create the object and add it to the tree and set its position.
 		var new_object: Node = load(node_data["filename"]).instantiate()
-		get_node(node_data["parent"]).call_deferred("add_child", new_object) #.add_child(new_object)
+		if get_node(node_data["parent"]):
+			print("JAHJBKFNS")
+		get_node(node_data["parent"]).add_child(new_object) #.call_deferred("add_child", new_object)
 		
 		if node_data.has("pos_x"):
 			new_object.set_deferred("position", Vector2(node_data["pos_x"], node_data["pos_y"]))
 			
-			if new_object is FlowChartNode or Pointer:
-				print("trjenj")
+			if new_object is FlowChartNode:
 				new_object.set_deferred("size", Vector2(node_data["size_x"], node_data["size_y"]))
 			
 		if node_data.has("text"):
-			#print("GNJDGN")
-			#print(node_data["text"])
-			#print(new_object is FlowChartNode)
 			new_object.set_text(node_data["text"])
+		
+		if new_object is Pointer:
+			new_object.start_pos = get_node(node_data["parent"])
+			new_object.end_pos = get_node(node_data["end_pos"])
 			
 		for i: StringName in node_data.keys():
 			if i in ["filename", "parent", "pos_x", "pos_y", "size_x", "size_y"]:
 				continue
 			new_object.set(i, node_data[i])
+		
 			
+	finished_loading.emit()
+	loading = false

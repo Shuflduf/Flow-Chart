@@ -88,7 +88,7 @@ func nevermind_pointer_invalid_sowwy() -> void:
 	
 func _node_moved() -> void:
 	for pointer in pointer_ends:
-		pointer.move_end_to_handle(self)
+		pointer.move_end_to_handle()
 		
 	for pointer in get_children():
 		pointer.update_pos()

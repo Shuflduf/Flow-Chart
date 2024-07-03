@@ -33,8 +33,7 @@ func save() -> Dictionary:
 	return save_dict
 
 func set_text(input_text: String) -> void:
-	#await Global.finished_loading
-	print("set text:" + input_text)
+	await Global.finished_loading
 	%TextEdit.text = input_text
 
 

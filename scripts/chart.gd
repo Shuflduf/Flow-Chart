@@ -10,6 +10,10 @@ var cam_zoom := 1.0
 
 const CHART_NODE = preload("res://scenes/node.tscn")
 
+#func _ready() -> void:
+	#Global.load_chart()
+
+
 func _process(_delta: float) -> void:
 	if Global.active_node != null:
 		Global.active_node._moved()
