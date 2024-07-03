@@ -7,6 +7,31 @@ var active_node: FlowChartNode
 signal finished_loading
 var loading := false
 
+func _ready() -> void:
+	launch()
+
+
+func launch() -> void:
+	if not FileAccess.file_exists("user://settings.json"):
+		var user_settings := FileAccess.open("user://settings.json", FileAccess.WRITE)
+		user_settings.store_line(JSON.stringify(settings.save()))
+	
+	var user_settings := FileAccess.open("user://settings.json", FileAccess.READ)
+	var new_settings := Settings.new()
+	
+	var json_string := user_settings.get_line()
+	var json := JSON.new()
+	var settings_data: Dictionary = json.parse_string(json_string)
+	
+	print(settings_data)
+	
+	for i: StringName in settings_data.keys():
+		new_settings.set(i, settings_data[i])
+	
+	user_settings.close()
+		
+	settings = new_settings
+
 func save_chart() -> void:
 	var save_chart_file := FileAccess.open("user://save1.flchrt", FileAccess.WRITE)
 	var save_nodes := get_tree().get_nodes_in_group("Persist")

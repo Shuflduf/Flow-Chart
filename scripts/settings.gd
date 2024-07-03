@@ -6,6 +6,15 @@ extends Resource
 @export var grid_resolution := 25
 @export var min_size := 64
 @export var max_size := 512
-@export var inverse_scroll := false
-@export_range(0.0, 1.0, 0.1) var zoom_sens := 1.1
-@export var load_default := true
+@export_range(0.1, 2.0, 0.1) var zoom_sens := 1.1
+
+func save() -> Dictionary:
+	var save_dict := {
+		"grid" : grid,
+		"mouse_margin" : mouse_margin,
+		"grid_resolution" : grid_resolution,
+		"min_size" : min_size,
+		"max_size" : max_size,
+		"zoom_sens" : zoom_sens,
+	}
+	return save_dict

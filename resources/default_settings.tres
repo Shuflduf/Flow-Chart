@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_sd5p4")
-grid = false
+grid = null
 mouse_margin = 5.0
 grid_resolution = 32
-min_size = 64
-max_size = 512
-inverse_scroll = false
-zoom_sens = 1.1
+min_size = null
+max_size = null
+inverse_scroll = null
+zoom_sens = null
