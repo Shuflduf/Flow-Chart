@@ -11,4 +11,3 @@ min_size = 64
 max_size = 512
 inverse_scroll = false
 zoom_sens = 1.1
-load_default = true

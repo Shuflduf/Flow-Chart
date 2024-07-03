@@ -10,21 +10,16 @@ var cam_zoom := 1.0
 
 const CHART_NODE = preload("res://scenes/node.tscn")
 
-#func _ready() -> void:
-	#Global.load_chart()
-
-
 func _process(_delta: float) -> void:
 	if Global.active_node != null:
-		Global.active_node._moved()
-		var actual_pos := get_local_mouse_position() + Global.active_node.local_mouse_offset
+		var actual_pos : Vector2 = get_local_mouse_position() + Global.active_node.local_mouse_offset
 
 		Global.active_node.global_position = grid_mover.move_grid(actual_pos)
 		return
 		
 	if moving_chart:
 		nodes.position = get_global_mouse_position() + mouse_offset
-		update_all_nodes()
+
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -59,7 +54,6 @@ func _zoom_at_point(zoom_change: float, mouse_position: Vector2) -> void:
 		nodes.scale = nodes.scale * zoom_change
 		var delta := (mouse_position - nodes.global_position) * (zoom_change - 1)
 		nodes.global_position = nodes.global_position - delta
-		update_all_nodes()
 		
 		
 func add_node() -> void:
@@ -67,8 +61,3 @@ func add_node() -> void:
 	print(nodes.global_position / nodes.scale)
 	new_node.global_position = (-nodes.global_position / nodes.scale)# - (nodes.global_position * 2)
 	nodes.add_child(new_node)
-
-	
-func update_all_nodes() -> void:
-	for node in nodes.get_children():
-			node._moved()

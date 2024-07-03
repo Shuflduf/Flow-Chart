@@ -2,7 +2,7 @@ extends Panel
 
 @export var chart: Control
 
-func _on_gui_input(event):
+func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_left"):
 		for child in chart.get_children():
 			if child is FlowChartNode:
