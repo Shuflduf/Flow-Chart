@@ -20,6 +20,7 @@ enum edges {
 var current_edge: edges
 
 func save() -> Dictionary:
+	#print(text.text)
 	var save_dict := {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
@@ -31,11 +32,17 @@ func save() -> Dictionary:
 	}
 	return save_dict
 
+func set_text(input_text: String) -> void:
+	await Global.finished_loading
+	print("set text:" + input_text)
+	text.text = input_text
+
+
 func _ready() -> void:
 	update_handles_position()
 		
 			
-func _on_text_edit_gui_input(event: InputEventMouse) -> void:
+func _on_text_edit_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		_on_gui_input(event)
 	

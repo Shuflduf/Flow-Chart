@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt8ik1p2capsh"]
+[gd_scene load_steps=7 format=3 uid="uid://bt8ik1p2capsh"]
 
 [ext_resource type="Script" path="res://scripts/node.gd" id="1_33khk"]
 [ext_resource type="FontFile" uid="uid://b84rrip7gr1t1" path="res://assets/fonts/OPENSANS-MEDIUM.TTF" id="2_l54e1"]
-[ext_resource type="Texture2D" uid="uid://bhq6k0reoaba5" path="res://icon.svg" id="2_ye5ua"]
 [ext_resource type="StyleBox" uid="uid://dyrgf00qmr58x" path="res://resources/textedit.tres" id="3_3as4h"]
 [ext_resource type="PackedScene" uid="uid://22388onf67bk" path="res://scenes/handle.tscn" id="4_gqlv8"]
 
@@ -104,12 +103,6 @@ offset_left = 56.0
 offset_top = -8.00001
 offset_right = 72.0
 offset_bottom = 7.99999
-
-[node name="Pointers" type="Node2D" parent="."]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Pointers"]
-texture = ExtResource("2_ye5ua")
 
 [connection signal="gui_input" from="Outline" to="." method="_on_margin_container_gui_input"]
 [connection signal="gui_input" from="Outline/PanelContainer/MarginContainer" to="." method="_on_gui_input"]
